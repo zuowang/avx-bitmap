@@ -18,6 +18,7 @@ using namespace impala;
 
 #define NUM_ROWS 1024000000
 #define BITMAP_SIZE 20480
+#define BIG_BITMAP_SIZE 2048000000
 int main() {
   int* rows = new int[NUM_ROWS];
   Bitmap bm(BITMAP_SIZE);
@@ -27,7 +28,29 @@ int main() {
     if (bm.Get<true>(rows[i])) ++rows_filted;
   }
   clock_t end = clock();
-  printf("get time: %f %d\n", (double)(end - start), rows_filted);
+  printf("time for Get operation: %f rows filtered:%d\n", (double)(end - start),
+      rows_filted);
   delete [] rows;
+
+  Bitmap bm1(BIG_BITMAP_SIZE);
+  Bitmap bm2(BIG_BITMAP_SIZE);
+  start = clock();
+  bm1.Or(&bm2);
+  end = clock();
+  printf("time for Or operation: %f\n", (double)(end - start));
+
+  start = clock();
+  bm1.And(&bm2);
+  end = clock();
+  printf("time for And operation: %f\n", (double)(end - start));
+
+  int* bit_index = new int[NUM_ROWS];
+  bool* v = new bool[NUM_ROWS];
+  start = clock();
+  for (int i = 0; i < NUM_ROWS; ++i) {
+    bm.Set<true>(bit_index[i],  v[i]);
+  }
+  end = clock();
+  printf("time for Set operation: %f\n", (double)(end - start));
   return 0;
 }
