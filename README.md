@@ -15,7 +15,7 @@ time for Or operation: 10000.000000
 time for And operation: 20000.000000
 time for Set operation: 1700000.000000
 ```
-|----------------------|
+
 | Operation | x faster |
 |----------------------|
 |   Get     |   7.1    |
@@ -25,5 +25,5 @@ time for Set operation: 1700000.000000
 |   And     |   3.5    |
 |----------------------|
 |   Set     |   5.6    |
-|----------------------|
+
 
