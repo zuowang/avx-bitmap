@@ -26,4 +26,9 @@ time for Set operation: 1700000.000000
 |----------------------|
 |   Set     |   5.6    |
 
+bitmap get mod:       Function     Rate (iters/ms)          Comparison
+----------------------------------------------------------------------
+                        Scalar                  64                  1X
+                          AVX2               189.7              2.963X
+
 
