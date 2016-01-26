@@ -106,7 +106,7 @@ class AVXBitmap {
       buffer_[i] |= src->buffer_[i];
     }
   }
-
+ 
   // Bitwise ORs the src bitmap into this one.
   void Or(const AVXBitmap* src) {
     for (int i = 0; i < buf_size_; i+=8) {
